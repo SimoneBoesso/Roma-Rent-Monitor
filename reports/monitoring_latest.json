@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-04T20:23:51.590167+00:00",
+  "generated_at": "2026-10-04T20:41:05.804659+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
-    "generated_at": "2026-10-04T20:23:29.962674+00:00",
+    "generated_at": "2026-10-04T20:40:45.818000+00:00",
     "split_mode": "temporal_last_semester",
     "n_reference": 32788,
     "n_current": 1345,
@@ -11,158 +11,158 @@
     "drifted_columns_share": 0.16666666666666666,
     "mae_reference": {
       "n": 32788,
-      "mae": 0.4997,
-      "rmse": 1.1433
+      "mae": 0.499,
+      "rmse": 1.1429
     },
     "mae_current": {
       "n": 1345,
-      "mae": 0.5234,
-      "rmse": 1.1804
+      "mae": 0.5298,
+      "rmse": 1.1827
     },
     "mae_by_day": [
       {
         "semester": "2014-1",
         "n": 1150,
-        "mae": 1.4349,
-        "rmse": 2.3743
+        "mae": 1.4183,
+        "rmse": 2.3496
       },
       {
         "semester": "2014-2",
         "n": 1382,
-        "mae": 0.7929,
-        "rmse": 1.615
+        "mae": 0.7884,
+        "rmse": 1.6123
       },
       {
         "semester": "2015-1",
         "n": 1518,
-        "mae": 0.6781,
-        "rmse": 1.2874
+        "mae": 0.683,
+        "rmse": 1.3118
       },
       {
         "semester": "2015-2",
         "n": 1525,
-        "mae": 0.5507,
-        "rmse": 1.2815
+        "mae": 0.5526,
+        "rmse": 1.2869
       },
       {
         "semester": "2016-1",
         "n": 1491,
-        "mae": 0.5127,
-        "rmse": 1.1221
+        "mae": 0.5074,
+        "rmse": 1.1129
       },
       {
         "semester": "2016-2",
         "n": 1494,
-        "mae": 0.4718,
-        "rmse": 1.01
+        "mae": 0.4721,
+        "rmse": 1.0077
       },
       {
         "semester": "2017-1",
         "n": 1344,
-        "mae": 0.4702,
-        "rmse": 1.0537
+        "mae": 0.4637,
+        "rmse": 1.049
       },
       {
         "semester": "2017-2",
         "n": 1341,
-        "mae": 0.3971,
-        "rmse": 1.0077
+        "mae": 0.3937,
+        "rmse": 1.0095
       },
       {
         "semester": "2018-1",
         "n": 1346,
-        "mae": 0.4301,
-        "rmse": 1.0274
+        "mae": 0.4319,
+        "rmse": 1.0287
       },
       {
         "semester": "2018-2",
         "n": 1346,
         "mae": 0.3919,
-        "rmse": 0.9798
+        "rmse": 0.9801
       },
       {
         "semester": "2019-1",
         "n": 1346,
-        "mae": 0.4314,
-        "rmse": 0.9967
+        "mae": 0.4282,
+        "rmse": 0.994
       },
       {
         "semester": "2019-2",
         "n": 2694,
-        "mae": 0.4188,
-        "rmse": 0.9871
+        "mae": 0.4134,
+        "rmse": 0.9824
       },
       {
         "semester": "2020-1",
         "n": 1347,
-        "mae": 0.4068,
-        "rmse": 0.9842
+        "mae": 0.4025,
+        "rmse": 0.981
       },
       {
         "semester": "2020-2",
         "n": 1347,
-        "mae": 0.443,
-        "rmse": 0.9916
+        "mae": 0.4365,
+        "rmse": 0.9867
       },
       {
         "semester": "2021-1",
         "n": 1347,
-        "mae": 0.4279,
-        "rmse": 0.9655
+        "mae": 0.4286,
+        "rmse": 0.9674
       },
       {
         "semester": "2021-2",
         "n": 1347,
-        "mae": 0.3604,
-        "rmse": 0.9266
+        "mae": 0.3644,
+        "rmse": 0.9313
       },
       {
         "semester": "2022-1",
         "n": 1347,
-        "mae": 0.387,
-        "rmse": 0.9205
+        "mae": 0.3898,
+        "rmse": 0.9241
       },
       {
         "semester": "2022-2",
         "n": 1347,
-        "mae": 0.4359,
-        "rmse": 0.9507
+        "mae": 0.4397,
+        "rmse": 0.9558
       },
       {
         "semester": "2023-1",
         "n": 1347,
-        "mae": 0.4276,
-        "rmse": 0.9703
+        "mae": 0.4299,
+        "rmse": 0.9755
       },
       {
         "semester": "2023-2",
         "n": 1347,
-        "mae": 0.4495,
-        "rmse": 1.0319
+        "mae": 0.4534,
+        "rmse": 1.0363
       },
       {
         "semester": "2024-1",
         "n": 1347,
-        "mae": 0.3662,
-        "rmse": 0.9956
+        "mae": 0.3718,
+        "rmse": 0.9982
       },
       {
         "semester": "2024-2",
         "n": 1344,
-        "mae": 0.5067,
-        "rmse": 1.118
+        "mae": 0.5109,
+        "rmse": 1.122
       },
       {
         "semester": "2025-1",
         "n": 1344,
-        "mae": 0.4822,
-        "rmse": 1.1262
+        "mae": 0.4881,
+        "rmse": 1.1295
       },
       {
         "semester": "2025-2",
         "n": 1345,
-        "mae": 0.5234,
-        "rmse": 1.1804
+        "mae": 0.5298,
+        "rmse": 1.1827
       }
     ],
     "reference_rows": 32788,
@@ -171,23 +171,23 @@
   "decision": {
     "should_retrain": false,
     "trigger_reason": "below_threshold",
-    "mae_ratio": 1.0474,
+    "mae_ratio": 1.0617,
     "mae_ratio_threshold": 1.5,
     "min_reference": 50,
     "n_reference": 32788,
     "mae_reference": {
       "n": 32788,
-      "mae": 0.4997,
-      "rmse": 1.1433
+      "mae": 0.499,
+      "rmse": 1.1429
     },
     "mae_current": {
       "n": 1345,
-      "mae": 0.5234,
-      "rmse": 1.1804
+      "mae": 0.5298,
+      "rmse": 1.1827
     },
     "drifted_columns_share": 0.16666666666666666,
     "features_stable": true,
-    "generated_at": "2026-10-04T20:23:35.450614+00:00",
+    "generated_at": "2026-10-04T20:40:50.809556+00:00",
     "summary_path": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/reports/drift_latest/summary.json",
     "dry_run": false,
     "model_path": null,
