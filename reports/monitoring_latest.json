@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-04T20:14:26.128595+00:00",
+  "generated_at": "2026-10-04T20:23:51.590167+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
-    "generated_at": "2026-10-04T20:14:14.083174+00:00",
+    "generated_at": "2026-10-04T20:23:29.962674+00:00",
     "split_mode": "temporal_last_semester",
     "n_reference": 32788,
     "n_current": 1345,
@@ -187,7 +187,7 @@
     },
     "drifted_columns_share": 0.16666666666666666,
     "features_stable": true,
-    "generated_at": "2026-10-04T20:14:17.459549+00:00",
+    "generated_at": "2026-10-04T20:23:35.450614+00:00",
     "summary_path": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/reports/drift_latest/summary.json",
     "dry_run": false,
     "model_path": null,
