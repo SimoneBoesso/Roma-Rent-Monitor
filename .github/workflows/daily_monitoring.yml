@@ -67,7 +67,9 @@ jobs:
         run: |
           dvc add data/raw
           dvc add data/processed/features_latest.jsonl
-          dvc push
+          # Bare `dvc push` can skip this pointer (gitignore on data/processed)
+          # and leave git pointing at an md5 that was never uploaded.
+          dvc push data/raw.dvc data/processed/features_latest.jsonl.dvc
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
