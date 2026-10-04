@@ -36,7 +36,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: dvc pull --force
-        continue-on-error: true
 
       - name: Pull cloud ingest inbox
         env:
