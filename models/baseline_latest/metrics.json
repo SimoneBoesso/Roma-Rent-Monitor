@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T20:40:33.087481+00:00",
+  "generated_at": "2026-10-04T21:24:23.203726+00:00",
   "input": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/data/processed/features_latest.jsonl",
   "model": "HistGradientBoostingRegressor",
   "features": [
@@ -24,7 +24,7 @@
     "sha256": "9a9f25f4726438cb7da1128190fa7eb1050d2b4c217a0659bebda42f4621da91",
     "nbytes": 11132506,
     "n_rows": 34133,
-    "mtime_utc": "2026-10-04T20:40:29.774939+00:00"
+    "mtime_utc": "2026-10-04T21:24:19.499816+00:00"
   },
   "fit_mode": "holdout_then_refit_full",
   "n_fit": 34133
