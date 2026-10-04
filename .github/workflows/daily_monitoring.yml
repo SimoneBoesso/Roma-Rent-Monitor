@@ -44,7 +44,6 @@ jobs:
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
           INGEST_S3_BUCKET: ${{ secrets.INGEST_S3_BUCKET }}
         run: python -m etl.extract.pull_ingest_inbox -v
-        continue-on-error: true
 
       - name: Require OMI CSV from DVC
         run: |
