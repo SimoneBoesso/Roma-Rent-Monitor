@@ -1,7 +1,7 @@
 {
-  "path": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
-  "sha256": "7ba91b7f31a58c0ab5c6233b12fdbcb25e73a574c224023dcc7eeb8af8de0b8d",
-  "nbytes": 12360159,
-  "n_rows": 32786,
-  "mtime_utc": "2026-09-25T15:21:59.525673+00:00"
+  "path": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/data/processed/features_latest.jsonl",
+  "sha256": "9a9f25f4726438cb7da1128190fa7eb1050d2b4c217a0659bebda42f4621da91",
+  "nbytes": 11132506,
+  "n_rows": 34133,
+  "mtime_utc": "2026-10-04T20:40:29.774939+00:00"
 }

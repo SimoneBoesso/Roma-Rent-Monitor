@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-29T07:52:56.595247+00:00",
-  "input": "data/processed/features_latest.jsonl",
+  "generated_at": "2026-10-04T20:40:33.087481+00:00",
+  "input": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/data/processed/features_latest.jsonl",
   "model": "HistGradientBoostingRegressor",
   "features": [
     "loc_mid_lag",
@@ -10,22 +10,22 @@
   ],
   "target": "price_per_m2_monthly",
   "split_mode": "temporal_last_semester",
-  "n_rows": 32786,
-  "n_train": 31441,
+  "n_rows": 34133,
+  "n_train": 32788,
   "n_test": 1345,
-  "mae": 0.5455,
-  "rmse": 1.1987,
-  "r2": 0.9593,
+  "mae": 0.5467,
+  "rmse": 1.2015,
+  "r2": 0.9591,
   "mae_naive": 0.4626,
   "rmse_naive": 1.3588,
   "r2_naive": 0.9477,
   "dataset": {
-    "path": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
-    "sha256": "7ba91b7f31a58c0ab5c6233b12fdbcb25e73a574c224023dcc7eeb8af8de0b8d",
-    "nbytes": 12360159,
-    "n_rows": 32786,
-    "mtime_utc": "2026-09-25T15:21:59.525673+00:00"
+    "path": "/home/runner/work/Roma-Rent-Monitor/Roma-Rent-Monitor/data/processed/features_latest.jsonl",
+    "sha256": "9a9f25f4726438cb7da1128190fa7eb1050d2b4c217a0659bebda42f4621da91",
+    "nbytes": 11132506,
+    "n_rows": 34133,
+    "mtime_utc": "2026-10-04T20:40:29.774939+00:00"
   },
   "fit_mode": "holdout_then_refit_full",
-  "n_fit": 32786
+  "n_fit": 34133
 }
