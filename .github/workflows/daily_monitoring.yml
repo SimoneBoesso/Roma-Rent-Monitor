@@ -71,10 +71,13 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/raw.dvc data/processed/features_latest.jsonl.dvc
-          if [ -f data/raw/.gitignore ]; then git add data/raw/.gitignore; fi
-          git diff --staged --quiet || git commit -m "dvc: update OMI data [skip ci]"
-          git push
+
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "dvc: update OMI data [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
 
       - name: Drift report
         run: python -m ml.drift_report -v
@@ -88,15 +91,16 @@ jobs:
             echo "No model commit — status=$status (baseline_latest unchanged)"
             exit 0
           fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add models/baseline_latest/model.joblib \
-                  models/baseline_latest/metrics.json \
-                  models/baseline_latest/dataset.json
-          git diff --staged --quiet && exit 0
-          git commit -m "model: retrain baseline_latest [skip ci]"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push
+
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "model: retrain baseline_latest [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
 
       - name: Export dashboard snapshots
         if: always() && !cancelled()
@@ -105,13 +109,18 @@ jobs:
             echo "No monitoring artifacts — skip snapshot export"
             exit 0
           fi
+
           python -m dashboard.data -v
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/good_deals_latest.json reports/monitoring_latest.json
-          git diff --staged --quiet || git commit -m "dashboard: update public snapshots [skip ci]"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push
+
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "dashboard: update public snapshots [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
 
       - name: Upload monitoring artifacts
         if: always()
