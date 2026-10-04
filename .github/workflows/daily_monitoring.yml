@@ -56,7 +56,7 @@ jobs:
           echo "Found ${#csvs[@]} OMI CSV file(s)"
 
       - name: Load + features
-        run: python run_pipeline.py --skip-train -v
+        run: python run_pipeline.py -v
 
       - name: Push data history
         if: success()
