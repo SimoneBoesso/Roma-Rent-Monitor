@@ -20,18 +20,20 @@ SEEN_SIGHTINGS_LIST = f"{SIGHTINGS_PREFIX}/seen.json"
 
 def cloud_configured() -> bool:
     """True when S3/R2 credentials are present (bucket defaults to rent-tracker-data)."""
-    return bool(
-        os.environ.get("AWS_ACCESS_KEY_ID", "").strip()
-        and os.environ.get("AWS_SECRET_ACCESS_KEY", "").strip()
-    )
+    has_key = bool(os.environ.get("AWS_ACCESS_KEY_ID", "").strip())
+    has_secret = bool(os.environ.get("AWS_SECRET_ACCESS_KEY", "").strip())
+    logger.debug(f"cloud_configured: AWS_ACCESS_KEY_ID={'set' if has_key else 'NOT SET'}, AWS_SECRET_ACCESS_KEY={'set' if has_secret else 'NOT SET'}")
+    return has_key and has_secret
 
 
 def _bucket() -> str:
-    return (
+    bucket = (
         os.environ.get("INGEST_S3_BUCKET", "").strip()
         or os.environ.get("AWS_S3_BUCKET", "").strip()
         or "rent-tracker-data"
     )
+    logger.debug(f"_bucket: using bucket={bucket}")
+    return bucket
 
 
 def _client():
@@ -51,6 +53,9 @@ def _client():
     if endpoint:
         kwargs["endpoint_url"] = endpoint
         kwargs["region_name"] = region
+        logger.debug(f"_client: using endpoint={endpoint}, region={region}")
+    else:
+        logger.debug(f"_client: no endpoint URL set, using AWS default (region={region})")
     return boto3.client("s3", **kwargs)
 
 # path for a file in the bucket
@@ -215,12 +220,17 @@ def read_dvc_md5(dvc_path) -> str | None:
 
     path = Path(dvc_path)
     if not path.is_file():
+        logger.warning(f"DVC pointer file not found: {path}")
         return None
-    for line in path.read_text(encoding="utf-8").splitlines():
+    content = path.read_text(encoding="utf-8")
+    logger.debug(f"read_dvc_md5: reading {path}\n{content}")
+    for line in content.splitlines():
         stripped = line.strip().lstrip("-").strip()
         if stripped.startswith("md5:"):
             digest = stripped.split(":", 1)[1].strip()
+            logger.debug(f"read_dvc_md5: found md5={digest}")
             return digest or None
+    logger.warning(f"read_dvc_md5: no md5 found in {path}")
     return None
 
 
@@ -228,7 +238,9 @@ def dvc_cache_key(md5: str, remote_prefix: str = "dvc") -> str:
     """Object key for a DVC md5 cache entry under the remote prefix."""
     digest = md5.strip().lower()
     prefix = remote_prefix.strip().strip("/") or "dvc"
-    return f"{prefix}/files/md5/{digest[:2]}/{digest[2:]}"
+    key = f"{prefix}/files/md5/{digest[:2]}/{digest[2:]}"
+    logger.debug(f"dvc_cache_key: md5={md5} → key={key}")
+    return key
 
 
 def ensure_features_latest(
@@ -245,32 +257,41 @@ def ensure_features_latest(
     from pathlib import Path
 
     out = Path(dest)
+    logger.info(f"ensure_features_latest: checking {out}")
+    
     if out.is_file() and out.stat().st_size > 0:
+        logger.info(f"ensure_features_latest: file exists and non-empty ({out.stat().st_size} bytes), skipping fetch")
         return True
 
     pointer = Path(dvc_path) if dvc_path is not None else Path(str(out) + ".dvc")
+    logger.debug(f"ensure_features_latest: using pointer {pointer}")
+    
     md5 = read_dvc_md5(pointer)
     if not md5:
-        logger.warning("No DVC md5 at %s — cannot fetch features", pointer)
+        logger.error(f"ensure_features_latest: FAILED - No DVC md5 at {pointer} — cannot fetch features")
         return False
+    
     if not cloud_configured():
-        logger.warning("Cloud not configured — cannot fetch features from R2")
+        logger.error(f"ensure_features_latest: FAILED - Cloud not configured (AWS credentials missing) — cannot fetch features from R2")
         return False
 
     key = dvc_cache_key(md5, remote_prefix=remote_prefix)
     client = _client()
     bucket = _bucket()
+    logger.info(f"ensure_features_latest: attempting to fetch s3://{bucket}/{key}")
+    
     try:
         obj = client.get_object(Bucket=bucket, Key=key)
         payload = obj["Body"].read()
     except ClientError as exc:
-        logger.warning("Failed to download s3://%s/%s: %s", bucket, key, exc)
+        logger.error(f"ensure_features_latest: FAILED - Could not download s3://{bucket}/{key}: {exc}")
         return False
+    
     if not payload:
-        logger.warning("Empty features object at s3://%s/%s", bucket, key)
+        logger.error(f"ensure_features_latest: FAILED - Empty features object at s3://{bucket}/{key}")
         return False
 
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(payload)
-    logger.info("Features ← s3://%s/%s → %s (%s bytes)", bucket, key, out, len(payload))
+    logger.info(f"ensure_features_latest: SUCCESS - Features ← s3://{bucket}/{key} → {out} ({len(payload)} bytes)")
     return True
